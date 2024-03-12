@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>equal_icon.svg</file>
+        <file>parabola-svgrepo-com.svg</file>
+        <file>clean.svg</file>
+        <file>info.svg</file>
+        <file>cancel.svg</file>
+        <file>calculator_icon.png</file>
+        <file>calculator_icon.icns</file>
+        <file>calculator_icon.ico</file>
+    </qresource>
+</RCC>
