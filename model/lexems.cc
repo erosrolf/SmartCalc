@@ -158,6 +158,9 @@ bool Lexems::lexlemWithFunctionIsValid(const std::string &func) const {
 }
 
 bool Lexems::lexlemWithNumberIsValid(const std::string &number) const {
+  if (number == ".") {
+    return false;
+  }
   bool is_valid = true;
   int dot_count = 0;
   int e_count = 0;

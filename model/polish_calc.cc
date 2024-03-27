@@ -48,7 +48,7 @@ void PolishCalc::calculate(const char* expression, const char* x_value) {
     }
   }
   if (status_ == Status::kOk) {
-    expression_ = polish_expression.getExpressionSting();
+    expression_ = polish_expression.getExpressionString();
     reverse_polish_ = polish_expression.getReversePolishString();
   } else {
     expression_.clear();

@@ -152,3 +152,31 @@ TEST(polish_calc, calc_22) {
   ASSERT_EQ(calc.status(), s21::Status::kOk);
   EXPECT_NEAR(calc.result(), 7.38905609893, 9e-7);
 }
+
+TEST(polish_calc, calc_23) {
+  s21::PolishCalc calc;
+  calc.calculate("log(x-ln(x^(2)))", "1");
+  ASSERT_EQ(calc.status(), s21::Status::kOk);
+  ASSERT_EQ(calc.result(), 0);
+}
+
+TEST(polish_calc, calc_24) {
+  s21::PolishCalc calc;
+  calc.calculate("cosx", "0");
+  ASSERT_EQ(calc.status(), s21::Status::kOk);
+  ASSERT_EQ(calc.result(), 1);
+}
+
+TEST(polish_calc, calc_25) {
+  s21::PolishCalc calc;
+  calc.calculate("2+.", "0");
+  ASSERT_EQ(calc.status(), s21::Status::kInvalidExpression);
+  ASSERT_EQ(calc.result(), 0);
+}
+
+TEST(polish_calc, calc_26) {
+  s21::PolishCalc calc;
+  calc.calculate(".", "0");
+  ASSERT_EQ(calc.status(), s21::Status::kInvalidExpression);
+  ASSERT_EQ(calc.result(), 0);
+}

@@ -32,6 +32,7 @@ class PolishCalc {
   Status status() { return status_; }
   std::string getExpression() { return expression_; }
   std::string getReversePolish() { return reverse_polish_; }
+  void reset() { result_ = 0, status_ = Status::kOk; }
 
  private:
   void unaryCalc(std::stack<double>& stack, const std::string& operation);

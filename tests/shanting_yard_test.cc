@@ -93,10 +93,15 @@ TEST(shanting_yard_test, construct_07) {
   ASSERT_EQ(polish.isValid(), false);
 }
 
+TEST(shanting_yard_test, construct_08) {
+  s21::ShantingYard polish("2+.");
+  ASSERT_EQ(polish.isValid(), false);
+}
+
 TEST(shanting_yard_test, getExpressionString) {
   std::string ref = "sqrt(111)-1/2*sin(111^2-2)";
   s21::ShantingYard polish("sqrt(111)-1/2*sin(111^2-2)");
-  EXPECT_EQ(ref, polish.getExpressionSting());
+  EXPECT_EQ(ref, polish.getExpressionString());
 }
 
 TEST(shanting_yard_test, getReversePolishString) {

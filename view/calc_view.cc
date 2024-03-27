@@ -54,28 +54,19 @@ void CalcView::buildGraph() {
   double x_end = ui->x_max_val->text().toDouble();
   double y_min = ui->y_min_val->text().toDouble();
   double y_max = ui->y_max_val->text().toDouble();
-  double step = (x_end - x_begin) / 1000;
-  QVector<double> x, y;
 
-  if (x_begin < x_end) {
-    for (double i = x_begin; i <= x_end; i += step) {
-      controller_->calculate(getExpression().c_str(), i);
-      if (controller_->status() == s21::Status::kOk) {
-        x.push_back(i);
-        y.push_back(controller_->result());
-      } else {
-        qDebug() << i;
-      }
-    }
-    ui->q_custom_plot->xAxis->setRange(x_begin, x_end);
-    ui->q_custom_plot->yAxis->setRange(y_min, y_max);
-    ui->q_custom_plot->graph(0)->setData(x, y);
-    ui->q_custom_plot->replot();
-  }
+  controller_->calcVectorsGraph(getExpression().c_str(), x_begin, x_end);
+
+  ui->q_custom_plot->xAxis->setRange(x_begin, x_end);
+  ui->q_custom_plot->yAxis->setRange(y_min, y_max);
+  ui->q_custom_plot->graph(0)->setData(controller_->getXVector(),
+                                       controller_->getYVector());
+  ui->q_custom_plot->replot();
 }
 
 void CalcView::showResult() {
   if (ui->graph_button->isChecked()) {
+    controller_->calcReset();
     ui->result_output->clear();
     buildGraph();
   } else {
@@ -143,7 +134,6 @@ void CalcView::equalButtonClicked() {
     ui->history_list->addItem(controller_->getReversePolish());
     ui->history_list->addItem(ui->result_output->text());
     ui->history_list->addItem("-----------------");
-    qDebug() << controller_->result();
   } else if (controller_->status() == s21::Status::kInvalidExpression) {
     ui->result_output->setText("Invalid expression");
   }

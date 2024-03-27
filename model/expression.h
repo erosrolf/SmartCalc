@@ -32,7 +32,6 @@ struct Expression {
   void toLowerCase();
   void removeSpacesInPlace();
   void replaceCommasWithDots();
-  void replacePiWithP();
 
   bool bracketsIsCorrect();
   bool ExpressionIsValid();

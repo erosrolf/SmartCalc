@@ -29,7 +29,7 @@ class ShantingYard {
   void lexlemsToPolish();
   bool isValid() { return expression_is_valid_; }
   const std::list<Lexem> data() { return reverse_polish_; }
-  std::string getExpressionSting();
+  std::string getExpressionString();
   std::string getReversePolishString();
 
  private:

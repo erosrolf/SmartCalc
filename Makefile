@@ -24,14 +24,18 @@ TEST_EXECUTABLE = $(DIR_BUILD_TESTS)$(MODEL)_test
 ifeq ($(UNAME), Linux)
 	OPEN_CMD = xdg-open
 	QTFLAGS = CONFIG+=qtquickcompiler
+	GTEST_LIB = /usr/lib/libgtest.a
 endif
 ifeq ($(UNAME), Darwin)
 	OPEN_CMD = open
 	LCOV_FLAG = --ignore-errors inconsistent
 	QTFLAGS = -spec macx-clang CONFIG+=qtquickcompiler
+	GTEST_LIB = /usr/local/lib/libgtest.a
 endif
 
-all: dir $(MODEL).a test
+all: dir $(MODEL).a test install
+
+model_lib_built: $(MODEL).a
 
 $(MODEL).a: dir $(OBJ)
 	ar rcs $(LIB_NAME) $(OBJ)
@@ -44,7 +48,7 @@ $(DIR_OBJ)%.o: $(DIR_TESTS)%.cc | dir
 
 
 $(TEST_EXECUTABLE): $(TEST_OBJ) $(LIB_NAME)
-	$(CXX) $(CXXFLAGS) $(GCOV_FLAG) $(TESTFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) $(GCOV_FLAG) $(TESTFLAGS) $(GTEST_LIB) $^ -o $@
 
 test: $(TEST_EXECUTABLE)
 	$(TEST_EXECUTABLE)
@@ -79,6 +83,7 @@ dir:
 dist: clean
 	mkdir -p $(DIR_DIST)
 	cp -R * $(DIR_DIST)
+	@rm -rf $(DIR_DIST)/$(DIR_DIST)
 	tar cvzf $(DIR_DIST).tgz $(DIR_DIST)
 	rm -rf $(DIR_DIST)
 

@@ -52,6 +52,11 @@ TEST(lexems_test, constructor_with_invalid_params_09) {
   EXPECT_FALSE(lex.isValid());
 }
 
+TEST(lexems_test, constructor_with_invalid_params_10) {
+  s21::Lexems lex("2+.");
+  EXPECT_FALSE(lex.isValid());
+}
+
 TEST(lexems_test, constructor_with_valid_params_01) {
   std::string count255 =
       "111111111111111111111111111111111111111111111111111111111111111111111111"

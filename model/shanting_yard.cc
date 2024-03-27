@@ -69,7 +69,7 @@ std::stack<Lexem> ShantingYard::operatorsToStack() {
   return operator_stack;
 }
 
-std::string ShantingYard::getExpressionSting() {
+std::string ShantingYard::getExpressionString() {
   std::string result;
   for (auto it : lexems_.data()) {
     result += it.str;

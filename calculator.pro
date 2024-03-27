@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    model/calc_graph.cc \
     model/expression.cc \
     model/lexems.cc \
     model/polish_calc.cc \
@@ -19,8 +20,10 @@ SOURCES += \
 
 HEADERS += \
   controller.h \
+  model/calc_graph.h \
   model/expression.h \
   model/lexems.h \
+  model/model.h \
   model/polish_calc.h \
   model/qcustomplot.h \
   model/shanting_yard.h \
